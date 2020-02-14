@@ -9,18 +9,21 @@ var orm = {
             finished(result);
         });
     },
-    insertOne: function(tableName,cols,vals){
+    insertOne: function(tableName,cols,vals, finished){
         var queryStr = "INSERT INTO " + tableName + " (" + cols.toString() + ") VALUES (" + vals.toString() + ")"; 
         //col.toString은 어레이를 받아서 각각의 엘리먼트를 콤마로 표시해서 나타낸다. 
+        console.log(queryStr);
         connection.query(queryStr, function(err, result){
-            return err ? false : true;
+            console.log("insert one error : " + err);
+            finished(err ? false : true);
             //에러가 있으면 폴스리턴 없으면 트루리턴! 
         });
     },
-    updateOne: function(tableName, colName, colVal, queryColN, queryColV){
+    updateOne: function(tableName, colName, colVal, queryColN, queryColV, finished){
         var queryStr = "UPDATE " + tableName + " SET " + colName + " = " + colVal + " WHERE " + queryColN + " = " + queryColV;
         connection.query(queryStr, function(err,result){
-            return err ? false : true;    
+            console.log("update one error : " + err);
+            finished(err ? false : true);   
         });
     }
 };
