@@ -5,10 +5,10 @@ var burger = {
         orm.selectAll("burgers", finished); 
     },
     insertOne: function(burgerName, finished){
-        orm.insertOne("burgers", ["name", "devoured"],["\""+ burgerName +"\"", false], finished);
+        orm.insertOne("burgers", ["name", "devoured"],["\""+ burgerName + "\"", false], finished);
     },
     updateOne: function(name, finished){
-        orm.updateOne("burgers", "devoured", true, "name", name, finished);
+        orm.updateOne("burgers", "devoured", true, "name", "\"" + name + "\"", finished);
     }
 };
 

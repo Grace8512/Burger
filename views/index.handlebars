@@ -1,9 +1,10 @@
 <div class="container" id="main">
     <div>
         <img src="assets/img/burger.png" alt="hamberger img">
+         <h1>Eat-Da-Burger!</h1>
     </div>
 
-    <h1>Eat-Da-Burger!</h1>
+   
 
     <div class="main_body">
         <div class="container">
@@ -21,7 +22,7 @@
                     <ul>
                         {{#each notEaten}}
                         <li>
-                            <form action="/move" method="PUT">
+                            <form action="/move" method="PUT" class="burgerMove">
                                 <input type="hidden" name = "burger_name" value={{this.name}}/> 
                                 <button type="submit">Devour it!</button>
                             </form>
@@ -46,3 +47,21 @@
         </form>
     </div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".burgerMove").submit(function(event){
+        //제이쿼리로 아이디를 찾게되면 아이디와 일치하는 가장 첫번째 아이템에만 서브밋이 적용되므로 클래스로 지정해줘야 함. 
+        console.log("move failed ");
+        event.preventDefault();//원래 폼인 서브밋을 눌렀을때 할 것을 멈추는 것. 
+        var burgerName = $(this).children("input").val();
+        $.ajax({
+            url:"/move/" + burgerName, 
+            method: "PUT",
+            success: function(){
+                window.location.reload();
+            }//success는 put move가 성공적일때 켜져있는 윈도우를 새로고침 하라는 뜻
+        });
+    });
+});
+</script>
