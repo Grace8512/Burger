@@ -1,52 +1,70 @@
-<div class="container" id="main">
-    <div>
-        <img src="assets/img/burger.png" alt="hamberger img">
-         <h1>Eat-Da-Burger!</h1>
-    </div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12" id="head">
+            <img src="assets/img/burger.png" alt="hamberger img" class="clearfix">
+            <h1>Eat-Da-Burger!</h1>
+        </div>
 
-   
-
-    <div class="main_body">
-        <div class="container">
+    <div class="container" id="main">
+    <div class="row">
+        <div class="col-sm-3">
             <div class="row">
                 <div id="inputBurger" class="col">
                     <ul>
                         {{#each notEaten}}
-                        <li>{{this.id}}. {{this.name}}</li>
+                        <li class="li" id="list1Id">{{this.id}}. {{this.name}}</li>
                         {{!-- unless = if not --}}
                         {{/each}}
                     </ul>
                 </div>
-                
+            </div>
+        </div>
+        
+        <div class="col-sm-6">
+            <div class="row">
                 <div id="button">
                     <ul>
                         {{#each notEaten}}
-                        <li>
+                        <li> 
                             <form action="/move" method="PUT" class="burgerMove">
                                 <input type="hidden" name = "burger_name" value={{this.name}}/> 
-                                <button type="submit">Devour it!</button>
+                                <button type="submit" id="devour">Devour it!</button>
                             </form>
                         </li>
-                        {{/each}}
-                    </ul>
-                </div>
-                
-                <div id="ateBurger">
-                    <ul>
-                        {{#each eaten}}
-                        <li>{{this.id}}. {{this.name}}</li>
                         {{/each}}
                     </ul>
                 </div>
             </div>
         </div>
 
-        <form action="/new" method="POST">
-            <input type="text" name = "burger_name"/> 
-            <button type="submit">Submit</button>
-        </form>
+        <div class="col-sm-3">
+            <div class="row">  
+                <div id="ateBurger">
+                    <ul>
+                        {{#each eaten}}
+                        <li class="li">{{this.id}}. {{this.name}}</li>
+                        {{/each}}
+                    </ul>
+                </div>  
+            </div> 
+        </div>
+    </div>
+    </div>
+
     </div>
 </div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12" id="footer">
+            <form action="/new" method="POST">
+                <input type="text" name = "burger_name" size="30"/>&nbsp;
+                <button type="submit" id="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <script type="text/javascript">
 $(document).ready(function(){
