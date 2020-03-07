@@ -1,4 +1,4 @@
-USE burgers_db;
+USE cf3adqaebgyss94w;
 
 INSERT INTO burgers(name, devoured)
 VALUES ("Cheese_Burger", true),
